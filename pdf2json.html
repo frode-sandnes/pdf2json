@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pdf2json</title>
+
+    <style>
+
+        /* By Frode Eika Sandnes, Oslo Metropolitan University, November, 2023.*/
+        
+        body
+            {
+            color:lightgrey;
+            background-color:black;
+            font-family:sans-serif;
+            }
+        .border  {
+            margin: 0 auto;
+            width: 80%;
+            padding: 1em;
+            border: 1px solid #CCC;
+            border-radius: 1em;
+            word-wrap: break-word;
+            }        
+        li
+            {
+            padding: 0.5rem;
+            }
+    </style>
+
+    <script src="./lib/docToText.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.228/pdf.min.js" defer></script>
+    <script src="pdf2json.js" defer></script>
+    <script src="./lib/FileSaver.js" defer></script>
+
+</head>
+<body>
+</body>
+    <h1 id="info">pdf2json</h1>
+    <p>Batch convert pdf documents to json with file info, text contents, page info and figure info.</p>   
+    <p>For very many large pdf files run several times and join the parts using the json-joiner below.</p>   
+    <p>Use Contrl/Shift to select multiple files (Contrl-A for all).</p> 
+    <div class="border">
+        <ul><li id="progressBarId" style="display: none;">
+            Status: <span id="progressMessageId" style="color: red;"></span> <span id="counterElementId" style="display: block">(<span id="progressCounterId" style="color:yellow;"></span>)</span>
+            </li>
+            <div id="firstInputControls">
+                <li id="submitButton" style="display: none">
+                    <label for="processID"><span>Generate template</span></label><br>
+                    <button type="submit" id="processID" style="background:lime">Save local copy</button>
+                </li>
+
+                <li id="pdfToConvert">
+                    <label for="file-selector-pdf"><span>Pdf files to convert</span></label><br>
+                    <input type="file" multiple id="file-selector-pdf" accept=".pdf" >
+                </li>
+
+                <li id="jsonToJoin">
+                    <label for="file-selector-json"><span>Json files to join</span></label><br>
+                    <input type="file" multiple id="file-selector-json" accept=".json" >
+                </li>
+            </div>
+
+            <li id="finalMessageId" style="display: none; color: lime"><h1>Finished!</h1></li>
+        </ul>				
+
+    <h2>Status report:</h2>                    
+    <p id="report" style="color: yellow;"></p>
+
+    </div>
+    </body>
+</html>
